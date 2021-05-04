@@ -11,7 +11,7 @@ let answer4 = document.querySelector(".answer4");
 let index = 0;
 
 let timer;
-let timerCount = 20;
+let timerCount = 9;
 let score = 0;
 
 let questionsArray = [
@@ -41,7 +41,15 @@ function startTimer() {
         timerCount--;
         // console.log(timerCount);
         timerElement.textContent = timerCount;
+        if (timerCount === 0) {
+            clearInterval(timer);
+            gameOver();
+        }
     }, 1000);
+}
+
+function gameOver() {
+    alert("Game over!");
 }
 
 // renders the questions and answers when start button pressed and as each question is answered.
