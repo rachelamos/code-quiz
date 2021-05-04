@@ -8,6 +8,7 @@ let answer1 = document.querySelector(".answer1");
 let answer2 = document.querySelector(".answer2");
 let answer3 = document.querySelector(".answer3");
 let answer4 = document.querySelector(".answer4");
+// let gradeResponse = document.querySelector(".grade-response");
 let index = 0;
 
 let timer;
@@ -48,15 +49,17 @@ function startTimer() {
     }, 1000);
 }
 
+// render high score page
 function gameOver() {
     alert("Game over!");
 }
 
 // renders the questions and answers when start button pressed and as each question is answered.
 function renderQuestions() {
+    // gradeResponse.textContent = "";
     questionBox.hidden = false;
     if (index > questionsArray.length - 1) {
-        return;
+        gameOver();
     }   else {
     question.textContent = questionsArray[index].question;
     answer1.textContent = questionsArray[index].answers[0];
@@ -66,85 +69,83 @@ function renderQuestions() {
 }}
 
 answer1.addEventListener("click", function (event) {
-    console.log(event);
     if (timerCount === 0) {
         return;
     }
     let selectedAnswer = event.target.innerText;
     if (selectedAnswer === questionsArray[index].correctAnswer) {
-        console.log("Correct!");
+        // gradeResponse.hidden = false;
+        // gradeResponse.textContent = "Correct!"
         index += 1;
         score += 10;
-        console.log(score);
+        alert("Correct!");
         renderQuestions();
     } else {
-        console.log("Wrong!");
+        // gradeResponse.hidden = false;
+        gradeResponse.textContent = "Oof - wrong!"
         index += 1;
         timerCount -= 5;
-        console.log(score);
+        alert("Sorry, incorrect.");
         renderQuestions();
     }
 })
 
 answer2.addEventListener("click", function (event) {
-    console.log(event);
     if (timerCount === 0) {
         return;
     }
     let selectedAnswer = event.target.innerText;
     if (selectedAnswer === questionsArray[index].correctAnswer) {
-        console.log("Correct!");
+        // gradeResponse.textContent = "Correct!"
         index += 1;
         score += 10;
-        console.log(score);
+        alert("Correct!");
         renderQuestions();
     } else {
-        console.log("Wrong!");
+        // gradeResponse.textContent = "Oof - wrong!"
         index += 1;
         timerCount -= 5;
-        console.log(score);
+        alert("Sorry, incorrect.");
         renderQuestions();
     }
 })
 
 answer3.addEventListener("click", function (event) {
-    console.log(event);
     if (timerCount === 0) {
         return;
     }
     let selectedAnswer = event.target.innerText;
     if (selectedAnswer === questionsArray[index].correctAnswer) {
-        console.log("Correct!");
+        // gradeResponse.textContent = "Correct!"
         index += 1;
         score += 10;
-        console.log(score);
+        alert("Correct!");
         renderQuestions();
     } else {
-        console.log("Wrong!");
+        // gradeResponse.textContent = "Oof - wrong!"
         index += 1;
         timerCount -= 5;
-        console.log(score);
+        alert("Sorry, incorrect.");
         renderQuestions();
     }
 })
 
 answer4.addEventListener("click", function (event) {
-    console.log(event);
     if (timerCount === 0) {
         return;
     }
     let selectedAnswer = event.target.innerText;
     if (selectedAnswer === questionsArray[index].correctAnswer) {
-        console.log("Correct!");
+        // gradeResponse.textContent = "Correct!"
         index += 1;
         score += 10;
-        console.log(score);
+        alert("Correct!");
         renderQuestions();
     } else {
-        console.log("Wrong!");
+        // gradeResponse.textContent = "Oof - wrong!"
         index += 1;
         timerCount -= 5;
-        console.log(score);
+        alert("Sorry, incorrect.");
         renderQuestions();
     }
 })
