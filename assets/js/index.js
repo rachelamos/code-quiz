@@ -12,6 +12,7 @@ let index = 0;
 
 let timer;
 let timerCount = 20;
+let score = 0;
 
 let questionsArray = [
     {
@@ -54,14 +55,6 @@ function renderQuestions() {
     answer2.textContent = questionsArray[index].answers[1];
     answer3.textContent = questionsArray[index].answers[2];
     answer4.textContent = questionsArray[index].answers[3];
-    // for (let i = 0; i < questionsArray.length; i++) {
-    //     console.log(questionsArray[index].question)
-    //     question.textContent = questionsArray[index].question;
-    //     answer1.textContent = questionsArray[index].answers[0];
-    //     answer2.textContent = questionsArray[index].answers[1];
-    //     answer3.textContent = questionsArray[index].answers[2];
-    //     answer4.textContent = questionsArray[index].answers[3];
-    // }
 }}
 
 answer1.addEventListener("click", function (event) {
@@ -73,14 +66,18 @@ answer1.addEventListener("click", function (event) {
     if (selectedAnswer === questionsArray[index].correctAnswer) {
         console.log("Correct!");
         index += 1;
+        score += 10;
+        console.log(score);
         renderQuestions();
     } else {
         console.log("Wrong!");
         index += 1;
         timerCount -= 5;
+        console.log(score);
         renderQuestions();
     }
 })
+
 answer2.addEventListener("click", function (event) {
     console.log(event);
     if (timerCount === 0) {
@@ -90,14 +87,18 @@ answer2.addEventListener("click", function (event) {
     if (selectedAnswer === questionsArray[index].correctAnswer) {
         console.log("Correct!");
         index += 1;
+        score += 10;
+        console.log(score);
         renderQuestions();
     } else {
         console.log("Wrong!");
         index += 1;
         timerCount -= 5;
+        console.log(score);
         renderQuestions();
     }
 })
+
 answer3.addEventListener("click", function (event) {
     console.log(event);
     if (timerCount === 0) {
@@ -107,14 +108,18 @@ answer3.addEventListener("click", function (event) {
     if (selectedAnswer === questionsArray[index].correctAnswer) {
         console.log("Correct!");
         index += 1;
+        score += 10;
+        console.log(score);
         renderQuestions();
     } else {
         console.log("Wrong!");
         index += 1;
         timerCount -= 5;
+        console.log(score);
         renderQuestions();
     }
 })
+
 answer4.addEventListener("click", function (event) {
     console.log(event);
     if (timerCount === 0) {
@@ -124,12 +129,14 @@ answer4.addEventListener("click", function (event) {
     if (selectedAnswer === questionsArray[index].correctAnswer) {
         console.log("Correct!");
         index += 1;
-        console.log(index);
+        score += 10;
+        console.log(score);
         renderQuestions();
     } else {
         console.log("Wrong!");
         index += 1;
         timerCount -= 5;
+        console.log(score);
         renderQuestions();
     }
 })
