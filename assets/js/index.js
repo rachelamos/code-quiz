@@ -11,7 +11,7 @@ let answer4 = document.querySelector(".answer4");
 let index = 0;
 
 let timer;
-let timerCount = 9;
+let timerCount = 20;
 
 let questionsArray = [
     {
@@ -46,17 +46,25 @@ function startTimer() {
 // renders the questions and answers when start button pressed and as each question is answered.
 function renderQuestions() {
     questionBox.hidden = false;
-    for (let i = 0; i < questionsArray.length; i++) {
-        console.log(questionsArray[index].question)
-        question.textContent = questionsArray[index].question;
-        answer1.textContent = questionsArray[index].answers[0];
-        answer2.textContent = questionsArray[index].answers[1];
-        answer3.textContent = questionsArray[index].answers[2];
-        answer4.textContent = questionsArray[index].answers[3];
-    }
-}
+    if (index > questionsArray.length - 1) {
+        return;
+    }   else {
+    question.textContent = questionsArray[index].question;
+    answer1.textContent = questionsArray[index].answers[0];
+    answer2.textContent = questionsArray[index].answers[1];
+    answer3.textContent = questionsArray[index].answers[2];
+    answer4.textContent = questionsArray[index].answers[3];
+    // for (let i = 0; i < questionsArray.length; i++) {
+    //     console.log(questionsArray[index].question)
+    //     question.textContent = questionsArray[index].question;
+    //     answer1.textContent = questionsArray[index].answers[0];
+    //     answer2.textContent = questionsArray[index].answers[1];
+    //     answer3.textContent = questionsArray[index].answers[2];
+    //     answer4.textContent = questionsArray[index].answers[3];
+    // }
+}}
 
-answer1.addEventListener("click", function(event) {
+answer1.addEventListener("click", function (event) {
     console.log(event);
     if (timerCount === 0) {
         return;
@@ -66,13 +74,14 @@ answer1.addEventListener("click", function(event) {
         console.log("Correct!");
         index += 1;
         renderQuestions();
-    }   else {
+    } else {
         console.log("Wrong!");
         index += 1;
+        timerCount -= 5;
         renderQuestions();
     }
 })
-answer2.addEventListener("click", function(event) {
+answer2.addEventListener("click", function (event) {
     console.log(event);
     if (timerCount === 0) {
         return;
@@ -82,13 +91,14 @@ answer2.addEventListener("click", function(event) {
         console.log("Correct!");
         index += 1;
         renderQuestions();
-    }   else {
+    } else {
         console.log("Wrong!");
         index += 1;
+        timerCount -= 5;
         renderQuestions();
     }
 })
-answer3.addEventListener("click", function(event) {
+answer3.addEventListener("click", function (event) {
     console.log(event);
     if (timerCount === 0) {
         return;
@@ -98,13 +108,14 @@ answer3.addEventListener("click", function(event) {
         console.log("Correct!");
         index += 1;
         renderQuestions();
-    }   else {
+    } else {
         console.log("Wrong!");
         index += 1;
+        timerCount -= 5;
         renderQuestions();
     }
 })
-answer4.addEventListener("click", function(event) {
+answer4.addEventListener("click", function (event) {
     console.log(event);
     if (timerCount === 0) {
         return;
@@ -115,9 +126,10 @@ answer4.addEventListener("click", function(event) {
         index += 1;
         console.log(index);
         renderQuestions();
-    }   else {
+    } else {
         console.log("Wrong!");
         index += 1;
+        timerCount -= 5;
         renderQuestions();
     }
 })
