@@ -12,7 +12,7 @@ let answer4 = document.querySelector(".answer4");
 let index = 0;
 
 let timer;
-let timerCount = 9;
+let timerCount = 25;
 let score = 0;
 
 let questionsArray = [
@@ -78,6 +78,7 @@ answer1.addEventListener("click", function (event) {
         // gradeResponse.textContent = "Correct!"
         index += 1;
         score += 10;
+        localStorage.setItem("score", score);
         alert("Correct!");
         renderQuestions();
     } else {
@@ -99,6 +100,7 @@ answer2.addEventListener("click", function (event) {
         // gradeResponse.textContent = "Correct!"
         index += 1;
         score += 10;
+        localStorage.setItem("score", score);
         alert("Correct!");
         renderQuestions();
     } else {
@@ -119,6 +121,7 @@ answer3.addEventListener("click", function (event) {
         // gradeResponse.textContent = "Correct!"
         index += 1;
         score += 10;
+        localStorage.setItem("score", score);
         alert("Correct!");
         renderQuestions();
     } else {
@@ -139,6 +142,7 @@ answer4.addEventListener("click", function (event) {
         // gradeResponse.textContent = "Correct!"
         index += 1;
         score += 10;
+        localStorage.setItem("score", score);
         alert("Correct!");
         renderQuestions();
     } else {
