@@ -10,6 +10,7 @@ let answer4 = document.querySelector(".answer4");
 let highScores = document.querySelector(".high-scores");
 let initialInputForm = document.querySelector(".initial-input-form");
 let submitInitialsButton = document.querySelector(".submit-initials-button");
+let restartButton = document.querySelector(".restart-button");
 
 let index = 0;
 let timer;
@@ -69,13 +70,14 @@ function renderQuestions() {
     questionBox.hidden = false;
     if (index > questionsArray.length - 1) {
         gameOver();
-    }   else {
-    question.textContent = questionsArray[index].question;
-    answer1.textContent = questionsArray[index].answers[0];
-    answer2.textContent = questionsArray[index].answers[1];
-    answer3.textContent = questionsArray[index].answers[2];
-    answer4.textContent = questionsArray[index].answers[3];
-}}
+    } else {
+        question.textContent = questionsArray[index].question;
+        answer1.textContent = questionsArray[index].answers[0];
+        answer2.textContent = questionsArray[index].answers[1];
+        answer3.textContent = questionsArray[index].answers[2];
+        answer4.textContent = questionsArray[index].answers[3];
+    }
+}
 
 // event listeners for each answer choice
 answer1.addEventListener("click", checkAnswer);
@@ -92,7 +94,7 @@ function checkAnswer(event) {
         localStorage.setItem("score", score);
         alert("Correct!");
         renderQuestions();
-    }   else {
+    } else {
         index += 1;
         timerCount -= 5;
         alert("Sorry, incorrect.");
@@ -101,7 +103,7 @@ function checkAnswer(event) {
 }
 
 // attaches event listener to submit button for recording scores
-submitInitialsButton.addEventListener("click", function() {
+submitInitialsButton.addEventListener("click", function () {
     let gamerInitialsAndScore = {
         score: score,
         initialInputForm: initialInputForm.value.trim(),
@@ -109,7 +111,13 @@ submitInitialsButton.addEventListener("click", function() {
     localStorage.setItem("gamerInitialsAndScore", JSON.stringify(gamerInitialsAndScore));
     let finalScore = JSON.parse(localStorage.getItem("gamerInitialsAndScore"));
     highScores.children[1].textContent = "Score: " + finalScore.score + " Player: " + finalScore.initialInputForm;
+    restartButton.hidden = false;
 });
 
 // attaches event listener to start button to call the startTimer function on click
 startButton.addEventListener("click", startTimer);
+
+// attaches event listener to restart button; when button clicked, reloads page
+restartButton.addEventListener("click", function () {
+    window.location.reload();
+});
