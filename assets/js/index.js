@@ -9,8 +9,11 @@ let answer2 = document.querySelector(".answer2");
 let answer3 = document.querySelector(".answer3");
 let answer4 = document.querySelector(".answer4");
 // let gradeResponse = document.querySelector(".grade-response");
-let index = 0;
+let highScores = document.querySelector(".high-scores");
+let initialInputForm = document.querySelector(".initial-input-form");
+let submitInitialsButton = document.querySelector(".submit-initials-button");
 
+let index = 0;
 let timer;
 let timerCount = 25;
 let score = 0;
@@ -52,6 +55,18 @@ function startTimer() {
 // render high score page
 function gameOver() {
     alert("Game over!");
+    clearInterval(timer);
+    getHighScores();
+}
+
+function getHighScores() {
+    // event.preventDefault();
+    timerBox.hidden = true;
+    // let finalScore = localStorage.getItem("score");
+    highScores.hidden = false;
+    highScores.children[2].textContent = "Final Score: " + score + "! Please enter your initials.";
+    initialInputForm.textContent = "Enter Initials here to record your score.";
+    // showHighScores();
 }
 
 // renders the questions and answers when start button pressed and as each question is answered.
@@ -154,8 +169,20 @@ answer4.addEventListener("click", function (event) {
     }
 })
 
-// function checkAnswer() {
+// attaches event listener to submit button for recording scores
+submitInitialsButton.addEventListener("click", function() {
+    let gamerInitialsAndScore = {
+        score: score,
+        initialInputForm: initialInputForm.value.trim(),
+    };
+    localStorage.setItem("gamerInitialsAndScore", JSON.stringify(gamerInitialsAndScore));
+    let finalScore = JSON.parse(localStorage.getItem("gamerInitialsAndScore"));
+    highScores.children[1].textContent = "Score: " + finalScore.score + " Player: " + finalScore.initialInputForm;
+});
 
+// function showHighScores() {
+//     let finalScore = JSON.parse(localStorage.getItem("gamerInitialsAndScore"));
+//     highScores.children[1].textContent = "Score: " + finalScore.score + " Player: " + finalScore.initialInputForm;
 // }
 
 
