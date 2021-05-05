@@ -3,12 +3,10 @@ let timerElement = document.querySelector(".timer-count");
 let timerBox = document.querySelector(".timer-box");
 let questionBox = document.querySelector(".question-box");
 let question = document.querySelector(".question");
-let answer = document.querySelector(".answer-box");
 let answer1 = document.querySelector(".answer1");
 let answer2 = document.querySelector(".answer2");
 let answer3 = document.querySelector(".answer3");
 let answer4 = document.querySelector(".answer4");
-// let gradeResponse = document.querySelector(".grade-response");
 let highScores = document.querySelector(".high-scores");
 let initialInputForm = document.querySelector(".initial-input-form");
 let submitInitialsButton = document.querySelector(".submit-initials-button");
@@ -43,7 +41,6 @@ function startTimer() {
     timerBox.hidden = false;
     timer = setInterval(function () {
         timerCount--;
-        // console.log(timerCount);
         timerElement.textContent = timerCount;
         if (timerCount === 0) {
             clearInterval(timer);
@@ -59,19 +56,16 @@ function gameOver() {
     getHighScores();
 }
 
+// grab player's initials and display onto page
 function getHighScores() {
-    // event.preventDefault();
     timerBox.hidden = true;
-    // let finalScore = localStorage.getItem("score");
     highScores.hidden = false;
     highScores.children[2].textContent = "Final Score: " + score + "! Please enter your initials.";
     initialInputForm.textContent = "Enter Initials here to record your score.";
-    // showHighScores();
 }
 
 // renders the questions and answers when start button pressed and as each question is answered.
 function renderQuestions() {
-    // gradeResponse.textContent = "";
     questionBox.hidden = false;
     if (index > questionsArray.length - 1) {
         gameOver();
@@ -83,91 +77,28 @@ function renderQuestions() {
     answer4.textContent = questionsArray[index].answers[3];
 }}
 
-answer1.addEventListener("click", function (event) {
-    if (timerCount === 0) {
-        return;
-    }
-    let selectedAnswer = event.target.innerText;
-    if (selectedAnswer === questionsArray[index].correctAnswer) {
-        // gradeResponse.hidden = false;
-        // gradeResponse.textContent = "Correct!"
-        index += 1;
-        score += 10;
-        localStorage.setItem("score", score);
-        alert("Correct!");
-        renderQuestions();
-    } else {
-        // gradeResponse.hidden = false;
-        gradeResponse.textContent = "Oof - wrong!"
-        index += 1;
-        timerCount -= 5;
-        alert("Sorry, incorrect.");
-        renderQuestions();
-    }
-})
+// event listeners for each answer choice
+answer1.addEventListener("click", checkAnswer);
+answer2.addEventListener("click", checkAnswer);
+answer3.addEventListener("click", checkAnswer);
+answer4.addEventListener("click", checkAnswer);
 
-answer2.addEventListener("click", function (event) {
-    if (timerCount === 0) {
-        return;
-    }
+// checks the selected answer with the question's correct answer
+function checkAnswer(event) {
     let selectedAnswer = event.target.innerText;
     if (selectedAnswer === questionsArray[index].correctAnswer) {
-        // gradeResponse.textContent = "Correct!"
         index += 1;
         score += 10;
         localStorage.setItem("score", score);
         alert("Correct!");
         renderQuestions();
-    } else {
-        // gradeResponse.textContent = "Oof - wrong!"
+    }   else {
         index += 1;
         timerCount -= 5;
         alert("Sorry, incorrect.");
         renderQuestions();
     }
-})
-
-answer3.addEventListener("click", function (event) {
-    if (timerCount === 0) {
-        return;
-    }
-    let selectedAnswer = event.target.innerText;
-    if (selectedAnswer === questionsArray[index].correctAnswer) {
-        // gradeResponse.textContent = "Correct!"
-        index += 1;
-        score += 10;
-        localStorage.setItem("score", score);
-        alert("Correct!");
-        renderQuestions();
-    } else {
-        // gradeResponse.textContent = "Oof - wrong!"
-        index += 1;
-        timerCount -= 5;
-        alert("Sorry, incorrect.");
-        renderQuestions();
-    }
-})
-
-answer4.addEventListener("click", function (event) {
-    if (timerCount === 0) {
-        return;
-    }
-    let selectedAnswer = event.target.innerText;
-    if (selectedAnswer === questionsArray[index].correctAnswer) {
-        // gradeResponse.textContent = "Correct!"
-        index += 1;
-        score += 10;
-        localStorage.setItem("score", score);
-        alert("Correct!");
-        renderQuestions();
-    } else {
-        // gradeResponse.textContent = "Oof - wrong!"
-        index += 1;
-        timerCount -= 5;
-        alert("Sorry, incorrect.");
-        renderQuestions();
-    }
-})
+}
 
 // attaches event listener to submit button for recording scores
 submitInitialsButton.addEventListener("click", function() {
@@ -179,12 +110,6 @@ submitInitialsButton.addEventListener("click", function() {
     let finalScore = JSON.parse(localStorage.getItem("gamerInitialsAndScore"));
     highScores.children[1].textContent = "Score: " + finalScore.score + " Player: " + finalScore.initialInputForm;
 });
-
-// function showHighScores() {
-//     let finalScore = JSON.parse(localStorage.getItem("gamerInitialsAndScore"));
-//     highScores.children[1].textContent = "Score: " + finalScore.score + " Player: " + finalScore.initialInputForm;
-// }
-
 
 // attaches event listener to start button to call the startTimer function on click
 startButton.addEventListener("click", startTimer);
