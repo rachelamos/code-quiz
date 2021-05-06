@@ -20,8 +20,8 @@ let score = 0;
 let questionsArray = [
     {
         question: "Commonly used data types do NOT include:",
-        answers: ["Boolean", "String", "Variable", "Number"],
-        correctAnswer: "Number"
+        answers: ["Boolean", "String", "Variable", "JQuery"],
+        correctAnswer: "JQuery"
     },
     {
         question: "Which of the following is not one of the main three programming languages of web development?",
