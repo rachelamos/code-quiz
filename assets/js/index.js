@@ -59,6 +59,7 @@ function gameOver() {
 
 // grab player's initials and display onto page
 function getHighScores() {
+    questionBox.hidden = true;
     timerBox.hidden = true;
     highScores.hidden = false;
     highScores.children[2].textContent = "Final Score: " + score + "! Please enter your initials.";
